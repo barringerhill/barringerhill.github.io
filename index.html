@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+  </head>
+  <body>
+    <h1 id="title">The Barringer Hill</h1>
+    <h3 id="timer"></h3>
+  </body>
+</html>
+
+<style type="text/css">
+  /* common tag */
+  html{
+      height: 100%;
+      width: 100%;
+      overflow: hidden;!important
+  }
+  
+  body {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
+  
+  /* id tag */
+  #title {
+      font-family: "Open Sans";
+      font-style: italic;
+      font-weight: bold;
+      text-decoration: underline;
+  }
+  
+  #timer {
+      text-align: center;
+      font-weight: 300;
+  }
+</style> 
+
+<script language="javascript" type="text/javascript">
+  // function
+  function leftTimer(year,month,day,hour,minute,second){ 
+      var leftTime = (new Date(year,month-1,day,hour,minute,second)) - (new Date()); 
+      var days = parseInt(leftTime / 1000 / 60 / 60 / 24 , 10); 
+      var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10);
+      var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);
+      var seconds = parseInt(leftTime / 1000 % 60, 10);
+      
+      days = checkTime(days); 
+      hours = checkTime(hours); 
+      minutes = checkTime(minutes); 
+      seconds = checkTime(seconds);      
+      setInterval("leftTimer(2018,9,24,11,11,11)",1000); 
+      document.getElementById("timer").innerHTML = days + " days "
+          + hours + " hours " +
+          + minutes + " minutes " +
+          + seconds + " seconds ";
+  }
+  
+  function checkTime(i) {
+      if (i < 10) {  i = "0" + i } 
+      return i; 
+  }
+
+
+  // listener
+  document.addEventListener('touchmove', function (e) {
+    e.preventDefault()
+  })
+  
+  // runtime
+  leftTimer();
+  
+</script>
